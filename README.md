@@ -145,9 +145,12 @@ order of flags — changes the hash and triggers one full rescan.
 
 ## Releases
 
-`pnpm run release` on the `dev` branch: lint, build, `cz-update-version` (major for a `breaking`
-commit, minor for a `feat`, patch otherwise), then `cz-commit --push --push-tags`, which tags
-`v<version>` and syncs `dev` into `main`.
+`pnpm run release` on the `dev` branch: lint, build, `cz-update-version`, then
+`cz-commit --push --push-tags`, which tags `v<version>` and syncs `dev` into `main`.
+
+The bump is derived from `git log main..dev` — the commits on `dev` that `main` does not have yet,
+not the commits since the last tag. A `feat!`/`fix!`/`chore!`/`refactor!` subject in that range means
+major, a `feat` means minor, anything else (an empty range included) means patch.
 
 ## License
 
