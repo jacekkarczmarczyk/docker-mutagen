@@ -34,8 +34,14 @@ Not published to npm; install straight from GitHub, pinned to a tag:
 ```
 
 `pnpm` records the resolved commit in the lockfile, so the install is reproducible; bumping means
-changing the tag. The package is TypeScript compiled by a `prepare` script, so a git install builds
-it on the spot — no registry and no committed build output involved.
+changing the tag.
+
+The sources are TypeScript, but the compiled `bin/` is **committed**, and the package deliberately has
+no `prepare`/`postinstall` script. pnpm 12 refuses to run build scripts of a git-hosted dependency
+unless the consumer allowlists it by its resolved tarball URL — which contains the commit sha, so every
+single release would force an edit in every consumer's `pnpm-workspace.yaml`. Shipping the build output
+keeps installing a tag a one-line change. `pnpm run release` rebuilds before committing, so `bin/`
+always matches `src/` in a released tag; when working on the package, run `pnpm run build` yourself.
 
 Requires `mutagen` in PATH (the plain `mutagen`, **not** `mutagen-compose`, which has been
 unmaintained since 2025), Docker, and Node 20+.

@@ -34,7 +34,6 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "git diff --name-status --exit-code HEAD && pnpm run lint && pnpm run build && cz-update-version && git add . && cz-commit --push --push-tags"
