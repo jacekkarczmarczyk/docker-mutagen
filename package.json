@@ -1,6 +1,6 @@
 {
   "name": "docker-mutagen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Synchronizacja repozytorium z kontenerem Dockera przez mutagena: sesja one-way-safe plus wyjątki two-way-safe dla plików zapisywanych w kontenerze",
   "author": "Jacek Karczmarczyk",
   "license": "MIT",
